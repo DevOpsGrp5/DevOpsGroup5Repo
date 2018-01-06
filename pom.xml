@@ -5,7 +5,7 @@
     <groupId>pgm.test.devopsgp5</groupId>
     <artifactId>devops-5</artifactId>
     <packaging>jar</packaging>
-    <version>1.0</version>
+    <version>1.0.${build.number}</version>
 
     <build>
         <plugins>
@@ -30,6 +30,30 @@
                     </execution>
                 </executions>
             </plugin>
+			<plugin>
+				<artifactId>Maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+				  <source>1.6</source>
+				  <target>1.6</target>
+				</configuration>
+			 </plugin>
+			 <plugin>
+				<groupId>org.apache.Maven.plugins</groupId>
+				<artifactId>Maven-jar-plugin</artifactId>
+				<version>2.5</version>
+				<configuration>
+				  <archive>
+					 <index>true</index>
+					 <manifest>
+						<addClasspath>true</addClasspath>
+					 </manifest>
+					 <manifestEntries>
+						<Implementation-Version>${build.number}</Implementation-Version>
+					 </manifestEntries>
+				  </archive>
+				</configuration>
+			 </plugin>
         </plugins>
     </build>
 </project>
